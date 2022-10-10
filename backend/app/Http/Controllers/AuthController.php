@@ -14,7 +14,7 @@ use Jenssegers\Mongodb\Auth\User as Authenticatable;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
 
-class AuthController extends Controller
+class AuthController extends Authenticatable
 {
     public function register(Request $request){
         $validator = Validator::make($request->all(), [
@@ -74,6 +74,15 @@ class AuthController extends Controller
     {
         return response()->json(auth()->user());
     }
+    public function getUserData(Request $request)
+    {
+        $user = User::where('email',$request->email)->first();
+        return response()->json([
+            'message' => 'Done',
+            'data'=>$user
+        ], 201);
+    }
+
 
     public function refresh()
     {
