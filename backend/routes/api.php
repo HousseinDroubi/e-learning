@@ -14,8 +14,14 @@ Route::group(["prefix"=> "v0.1"], function(){
    });
    
    Route::get("/get_user", [AuthController::class, "getUserData"])->name("get-user");
-   Route::post("/register", [AuthController::class, "register"])->name("register");
-   Route::post("/create_course", [CourseController::class, "createCourse"])->name("create-course");
+
    Route::post("/login", [AuthController::class, "login"])->name("login");
    Route::get("/not_found", [AuthController::class, "notFound"])->name("not-found");
+
+    //Admin routes
+    Route::post("/register", [AuthController::class, "register"])->name("register");
+    Route::post("/create_course", [CourseController::class, "createCourse"])->name("create-course");
+
+    //Instructor routes
+    Route::get("/get_courses/{instructor_id}", [CourseController::class, "getCourses"])->name("get-courses");
 });
