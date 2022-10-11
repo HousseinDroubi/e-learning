@@ -66,20 +66,21 @@ class AuthController extends Authenticatable
         if (! $token = auth()->attempt($credentials)) {
             return response()->json(['error' => 'Unauthorized'], 401);
         }
-
-        return $this->respondWithToken($token);
+        
+        $email= $credentials['email'];
+        return $this->getUserData($email);
     }
 
     public function me()
     {
         return response()->json(auth()->user());
     }
-    public function getUserData(Request $request)
+    public function getUserData($email)
     {
-        $user = User::where('email',$request->email)->first();
+        $user = User::where('email',$email)->first();
         return response()->json([
             'message' => 'Done',
-            'data'=>$user
+            'data'=> $user
         ], 201);
     }
 
