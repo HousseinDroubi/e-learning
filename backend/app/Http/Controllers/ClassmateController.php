@@ -27,7 +27,7 @@ class ClassmateController extends Controller{
            'course_id'=>$request->course_id,
            'student_id'=>$request->student_id,
         ]);
-        }catch(Exeption $e){
+        }catch(Exception $e){
             return response()->json([
                 'message' => 'error',
                 'data' => 'duplicate students'

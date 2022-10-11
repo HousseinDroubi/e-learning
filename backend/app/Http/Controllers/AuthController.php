@@ -17,6 +17,7 @@ use App\Http\Controllers\Controller;
 class AuthController extends Authenticatable
 {
     public function register(Request $request){
+
         $validator = Validator::make($request->all(), [
             'username' => 'required|string|min:2|max:100',
             'email' => 'required|string|email|max:100|unique:users',
