@@ -36,4 +36,8 @@ class AnnouncementController extends Controller
         ], 201);
         }
 
+        public function getAnnouncements($student_id){
+            $courses_id = Classmate::where("student_id",$student_id)->pluck("course_id");
+        }
+
 }

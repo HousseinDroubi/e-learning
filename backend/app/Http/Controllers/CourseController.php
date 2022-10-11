@@ -7,6 +7,8 @@ use Auth;
 use Validator;
 use App\Models\Course;
 use App\Models\Assigner;
+use App\Models\Classmate;
+use App\Models\User;
 use App\Http\Controllers\Controller;
 use Jessengesr\Mongodb\Eloquent\Model;
 
@@ -52,5 +54,23 @@ class CourseController extends Controller
             'message' => 'Done',
             'courses' => $courses
         ], 201);
+    }
+    public function getStudentCourses($student_id){
+        $courses_id = Classmate::where("student_id",$student_id)->pluck("course_id");
+        $my_courses = array();
+        foreach ($courses_id as $course_id){
+            array_push($my_courses,Course::where("_id",$course_id)->get());
+        } 
+        return $my_courses;
+    }
+    public function getCourseEnrolled($course_id){
+        $students_id = Classmate::where("course_id",$course_id)->pluck("student_id");
+        
+        $students_enrolled= array();
+
+        foreach ($students_id as $student_id){
+            array_push($students_enrolled,User::where("_id",$student_id)->get());
+        } 
+        return $students_enrolled;
     }
 }
