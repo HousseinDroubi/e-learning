@@ -16,6 +16,7 @@ return new class extends Migration
         Schema::create('assignments', function (Blueprint $table) {
             $table->id();
             $table->integer("instructor_id");
+            $table->integer("course_id");
             $table->string("assignment_text");
             $table->timestamps();
         });

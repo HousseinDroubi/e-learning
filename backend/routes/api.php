@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\AnnouncementController;
+use App\Http\Controllers\AssignmentController;
 
 Route::group(["prefix"=> "v0.1"], function(){
    
@@ -26,5 +27,5 @@ Route::group(["prefix"=> "v0.1"], function(){
     //Instructor routes
     Route::get("/get_courses/{instructor_id}", [CourseController::class, "getCourses"])->name("get-courses");
     Route::post("/create_announcement", [AnnouncementController::class, "createAnnouncement"])->name("create-announcement");
-
+    Route::post("/create_assignemnt", [AssignmentController::class, "createAssignment"])->name("create-assignemnt");
 });
