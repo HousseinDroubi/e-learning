@@ -105,7 +105,6 @@ class AuthController extends Authenticatable
         ], 400);
     }
     public function getStudents(){
-
         $user = User::where('user_type','3')->get();
         return response()->json([
             'message' => 'Done',

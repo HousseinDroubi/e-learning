@@ -4,8 +4,11 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;
+use Auth;
+use Jessengesr\Mongodb\Eloquent\Model;
+use App\Models\User;
 
-class InstructorAdmin
+class AuthInstructor
 {
     /**
      * Handle an incoming request.
@@ -16,6 +19,12 @@ class InstructorAdmin
      */
     public function handle(Request $request, Closure $next)
     {
-        return $next($request);
+        $user_type =User::where('_id', $request->id)->pluck('user_type')->first();
+
+        if($user_type=="2"){
+            return $next($request);
+        }
+        return redirect()->route('not-found');
+            
     }
 }

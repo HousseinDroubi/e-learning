@@ -19,9 +19,9 @@ class AuthAdmin
      */
     public function handle(Request $request, Closure $next)
     {
-        $user =User::where('_id', $request->id)->pluck('user_type')->first();
+        $user_type =User::where('_id', $request->id)->pluck('user_type')->first();
 
-        if($user=="1"){
+        if($user_type=="1"){
             return $next($request);
         }
         return redirect()->route('not-found');
