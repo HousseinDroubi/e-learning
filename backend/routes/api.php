@@ -26,6 +26,8 @@ Route::group(["prefix"=> "v0.1"], function(){
 
     //Instructor routes
     Route::get("/get_courses/{instructor_id}", [CourseController::class, "getCourses"])->name("get-courses");
+    Route::get("/get_students", [AuthController::class, "getStudents"])->name("get_students");
     Route::post("/create_announcement", [AnnouncementController::class, "createAnnouncement"])->name("create-announcement");
     Route::post("/create_assignemnt", [AssignmentController::class, "createAssignment"])->name("create-assignemnt");
+
 });

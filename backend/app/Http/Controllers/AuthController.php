@@ -103,4 +103,12 @@ class AuthController extends Authenticatable
             'message' => 'Access denied'
         ], 400);
     }
+    public function getStudents(){
+
+        $user = User::where('user_type','3')->get();
+        return response()->json([
+            'message' => 'Done',
+            'data'=> $user
+        ], 201);
+    }
 }
