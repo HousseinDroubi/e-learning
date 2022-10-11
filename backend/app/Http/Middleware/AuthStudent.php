@@ -17,8 +17,8 @@ class AuthStudent
      * @param  \Closure(\Illuminate\Http\Request): (\Illuminate\Http\Response|\Illuminate\Http\RedirectResponse)  $next
      * @return \Illuminate\Http\Response|\Illuminate\Http\RedirectResponse
      */
-    public function handle(Request $request, Closure $next)
-    {
+    public function handle(Request $request, Closure $next){
+        // Here we are giving access for the admin requests only when the user type is '3'
         $user_type =User::where('_id', $request->id)->pluck('user_type')->first();
 
         if($user_type=="3"){
