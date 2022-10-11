@@ -39,9 +39,9 @@ Route::group(["prefix"=> "v0.1"], function(){
 
     Route::get("/my_announcements/{student_id}", [AnnouncementController::class, "getAnnouncements"])->name("my-announcement");
 
-    Route::get("/my_assignment/{student_id}", [AnnouncementController::class, "getAssignments"])->name("my-assignment");
+    Route::get("/my_assignments/{student_id}", [AssignmentController::class, "getAssignments"])->name("my-assignment");
 
     Route::group(["middleware" => "auth.student"], function(){
-        
+        Route::post("/submit_assignment", [AssignmentController::class, "submitAssignment"])->name("submit-assignment");
     });
 });

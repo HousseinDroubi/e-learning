@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Auth;
 use Validator;
 use App\Models\Assignment;
+use App\Models\Classmate;
 use App\Http\Controllers\Controller;
 use Jessengesr\Mongodb\Eloquent\Model;
 
@@ -33,5 +34,15 @@ class AssignmentController extends Controller
             'message' => 'done',
             'user' => $assignment
         ], 201);
+        }
+        public function submitAssignment(Request $request){
+            
+            $courses_id = Classmate::where("student_id",$student_id)->pluck("course_id");
+            // return $courses_id;
+            $assignments = array();
+            foreach($courses_id as $course_id){
+                array_push($assignments,Assignment::where("course_id",$course_id)->get());
+            }
+            return $assignments;
         }
 }
