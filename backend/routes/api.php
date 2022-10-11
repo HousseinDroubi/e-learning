@@ -7,6 +7,7 @@ use App\Http\Controllers\CourseController;
 use App\Http\Controllers\AnnouncementController;
 use App\Http\Controllers\AssignmentController;
 use App\Http\Controllers\ClassmateController;
+use App\Http\Controllers\SubmitterController;
 use App\Http\Middleware\AuthAdmin;
 use App\Http\Middleware\AuthInstructor;
 
@@ -42,6 +43,6 @@ Route::group(["prefix"=> "v0.1"], function(){
     Route::get("/my_assignments/{student_id}", [AssignmentController::class, "getAssignments"])->name("my-assignment");
 
     Route::group(["middleware" => "auth.student"], function(){
-        Route::post("/submit_assignment", [AssignmentController::class, "submitAssignment"])->name("submit-assignment");
+        Route::post("/submit_assignment", [SubmitterController::class, "submitAssignment"])->name("submit-assignment");
     });
 });

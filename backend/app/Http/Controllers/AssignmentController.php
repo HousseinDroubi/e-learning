@@ -35,7 +35,7 @@ class AssignmentController extends Controller
             'user' => $assignment
         ], 201);
         }
-        public function submitAssignment(Request $request){
+        public function getAssignments($student_id){
             
             $courses_id = Classmate::where("student_id",$student_id)->pluck("course_id");
             // return $courses_id;
