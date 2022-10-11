@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CourseController;
+use App\Http\Controllers\AnnouncementController;
 
 Route::group(["prefix"=> "v0.1"], function(){
    
@@ -24,4 +25,6 @@ Route::group(["prefix"=> "v0.1"], function(){
 
     //Instructor routes
     Route::get("/get_courses/{instructor_id}", [CourseController::class, "getCourses"])->name("get-courses");
+    Route::post("/create_announcement", [AnnouncementController::class, "createAnnouncement"])->name("create-announcement");
+
 });
