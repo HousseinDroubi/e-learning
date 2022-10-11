@@ -37,7 +37,9 @@ Route::group(["prefix"=> "v0.1"], function(){
 
     Route::get("/course_enrolled/{course_id}", [CourseController::class, "getCourseEnrolled"])->name("course-enrolled");
 
-    Route::get("/my_announcement/{student_id}", [AnnouncementController::class, "getAnnouncements"])->name("my-announcement");
+    Route::get("/my_announcements/{student_id}", [AnnouncementController::class, "getAnnouncements"])->name("my-announcement");
+
+    Route::get("/my_assignment/{student_id}", [AnnouncementController::class, "getAssignments"])->name("my-assignment");
 
     Route::group(["middleware" => "auth.student"], function(){
         

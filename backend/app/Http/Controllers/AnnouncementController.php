@@ -7,6 +7,7 @@ use Auth;
 use Validator;
 use App\Models\Announcement;
 use App\Models\Assigner;
+use App\Models\Classmate;
 use App\Http\Controllers\Controller;
 use Jessengesr\Mongodb\Eloquent\Model;
 
@@ -38,6 +39,12 @@ class AnnouncementController extends Controller
 
         public function getAnnouncements($student_id){
             $courses_id = Classmate::where("student_id",$student_id)->pluck("course_id");
+            // return $courses_id;
+            $announcements = array();
+            foreach($courses_id as $course_id){
+                array_push($announcements,Announcement::where("course_id",$course_id)->get());
+            }
+            return $announcements;
         }
 
 }
